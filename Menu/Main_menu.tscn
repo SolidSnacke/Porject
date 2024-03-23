@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpc3g7i0rm1qf"]
+
+[ext_resource type="Script" path="res://Menu/Main_menu.gd" id="1_l24ni"]
+[ext_resource type="Texture2D" uid="uid://c42npekdv5lg1" path="res://Spriets/background_glacial_mountains.png" id="1_xhvdu"]
+[ext_resource type="Texture2D" uid="uid://s2i0kgu204nj" path="res://Spriets/Board.png" id="2_48jax"]
+[ext_resource type="Texture2D" uid="uid://eday28nab61e" path="res://Spriets/Button.png" id="2_ff3nq"]
+[ext_resource type="Texture2D" uid="uid://blva7l63qd7j0" path="res://Spriets/Button_press.png" id="3_3c8b8"]
+[ext_resource type="FontFile" uid="uid://dbxnqhfssngc6" path="res://Comic Sans MS Pixel.ttf" id="3_j6t7b"]
+[ext_resource type="Texture2D" uid="uid://c5debgtld81nh" path="res://Spriets/Penguin_one.png" id="7_ye6e1"]
+[ext_resource type="AudioStream" uid="uid://c1wmq7jbtqg3m" path="res://Menu/knopka-klik-zvonkii-myagkaya.mp3" id="8_hcc6p"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l24ni")
+
+[node name="BackgroundGlacialMountains" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.9974, 3)
+texture = ExtResource("1_xhvdu")
+
+[node name="Board" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("2_48jax")
+
+[node name="Play" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 240.0
+offset_right = 827.0
+offset_bottom = 338.0
+texture_normal = ExtResource("2_ff3nq")
+texture_pressed = ExtResource("3_3c8b8")
+
+[node name="Label" type="Label" parent="Play"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 466.0
+offset_bottom = 81.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("3_j6t7b")
+theme_override_font_sizes/font_size = 55
+text = "Играть"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 357.0
+offset_right = 827.0
+offset_bottom = 455.0
+texture_normal = ExtResource("2_ff3nq")
+texture_pressed = ExtResource("3_3c8b8")
+
+[node name="Label" type="Label" parent="Settings"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 466.0
+offset_bottom = 81.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("3_j6t7b")
+theme_override_font_sizes/font_size = 55
+text = "Настройки"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 473.0
+offset_right = 827.0
+offset_bottom = 571.0
+texture_normal = ExtResource("2_ff3nq")
+texture_pressed = ExtResource("3_3c8b8")
+
+[node name="Label" type="Label" parent="Exit"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 466.0
+offset_bottom = 81.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("3_j6t7b")
+theme_override_font_sizes/font_size = 55
+text = "Выход"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PenguinOne" type="Sprite2D" parent="."]
+position = Vector2(892, 80)
+scale = Vector2(1.65162, 1.65162)
+texture = ExtResource("7_ye6e1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 231.0
+offset_top = 71.0
+offset_right = 924.0
+offset_bottom = 227.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("3_j6t7b")
+theme_override_font_sizes/font_size = 144
+text = "Penguin Place"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_hcc6p")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

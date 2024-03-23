@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://cof7einp22qxr"]
+
+[ext_resource type="Script" path="res://Menu/Settings_menu.gd" id="1_qupy0"]
+[ext_resource type="Texture2D" uid="uid://c42npekdv5lg1" path="res://Spriets/background_glacial_mountains.png" id="2_o00ow"]
+[ext_resource type="Texture2D" uid="uid://s2i0kgu204nj" path="res://Spriets/Board.png" id="3_lnpxu"]
+[ext_resource type="Texture2D" uid="uid://eday28nab61e" path="res://Spriets/Button.png" id="4_i3fpa"]
+[ext_resource type="Texture2D" uid="uid://blva7l63qd7j0" path="res://Spriets/Button_press.png" id="5_gw8vm"]
+[ext_resource type="FontFile" uid="uid://dbxnqhfssngc6" path="res://Comic Sans MS Pixel.ttf" id="6_icarf"]
+[ext_resource type="AudioStream" uid="uid://c1wmq7jbtqg3m" path="res://Menu/knopka-klik-zvonkii-myagkaya.mp3" id="7_1xsds"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qupy0")
+
+[node name="BackgroundGlacialMountains" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.9974, 3)
+texture = ExtResource("2_o00ow")
+
+[node name="Board" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("3_lnpxu")
+
+[node name="Exit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 473.0
+offset_right = 827.0
+offset_bottom = 571.0
+texture_normal = ExtResource("4_i3fpa")
+texture_pressed = ExtResource("5_gw8vm")
+
+[node name="Label" type="Label" parent="Exit"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 466.0
+offset_bottom = 81.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("6_icarf")
+theme_override_font_sizes/font_size = 55
+text = "Выход"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Sprite2D" parent="."]
+position = Vector2(585, 270)
+texture = ExtResource("4_i3fpa")
+
+[node name="Label" type="Label" parent="Button"]
+offset_left = -224.0
+offset_top = -31.0
+offset_right = 224.0
+offset_bottom = 32.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("6_icarf")
+theme_override_font_sizes/font_size = 55
+text = "СКОРО! Возможно..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1xsds")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
