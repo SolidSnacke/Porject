@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://nt6acv23r1sh"]
+
+[ext_resource type="Script" path="res://Cards_game/Game_Card.gd" id="1_2ktyv"]
+[ext_resource type="Texture2D" uid="uid://dcmv7xpompbum" path="res://Spriets/Table.png" id="2_0d432"]
+[ext_resource type="FontFile" uid="uid://b77m1jw8wa2oo" path="res://vcrosdmonorusbyd.ttf" id="3_rmog6"]
+[ext_resource type="AudioStream" uid="uid://baskaiukiooxj" path="res://Cards_game/78d2299df3f7c30.mp3" id="4_xvlty"]
+
+[node name="Game_Card" type="Node2D"]
+script = ExtResource("1_2ktyv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("2_0d432")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 117.0
+offset_top = 117.0
+offset_right = 1035.0
+offset_bottom = 555.0
+mouse_filter = 2
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Lose" type="Label" parent="."]
+offset_left = 1082.0
+offset_top = 171.0
+offset_right = 1157.0
+offset_bottom = 265.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rmog6")
+theme_override_font_sizes/font_size = 90
+text = "0"
+horizontal_alignment = 1
+
+[node name="Win_01" type="Label" parent="."]
+offset_left = 1082.0
+offset_top = 458.0
+offset_right = 1157.0
+offset_bottom = 552.0
+theme_override_fonts/font = ExtResource("3_rmog6")
+theme_override_font_sizes/font_size = 90
+text = "0"
+horizontal_alignment = 1
+
+[node name="Win_10" type="Label" parent="."]
+offset_left = 1082.0
+offset_top = 361.0
+offset_right = 1157.0
+offset_bottom = 455.0
+theme_override_fonts/font = ExtResource("3_rmog6")
+theme_override_font_sizes/font_size = 90
+text = "0"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xvlty")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

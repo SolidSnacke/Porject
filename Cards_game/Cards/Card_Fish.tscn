@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://8llolebwm4g1"]
+
+[ext_resource type="Script" path="res://Cards_game/Cards/Card_Script.gd" id="1_t3hff"]
+[ext_resource type="Texture2D" uid="uid://2n7dcm65ojii" path="res://Spriets/Card_Empty.png" id="2_btanu"]
+[ext_resource type="Texture2D" uid="uid://u21d4fy5c6v4" path="res://Spriets/Card_Fish.png" id="3_2ylmo"]
+[ext_resource type="AudioStream" uid="uid://cd16yu518x471" path="res://mb_card_deal_08.mp3" id="4_ghtbl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pewm1"]
+atlas = ExtResource("2_btanu")
+region = Rect2(0, 0, 36, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2yja"]
+atlas = ExtResource("3_2ylmo")
+region = Rect2(36, 0, 36, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_peerc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pewm1")
+}],
+"loop": true,
+"name": &"Hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2yja")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwgtb"]
+size = Vector2(103, 120)
+
+[node name="Card_Fish" type="Area2D"]
+script = ExtResource("1_t3hff")
+metadata/Index = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.86312, 2.86312)
+sprite_frames = SubResource("SpriteFrames_peerc")
+animation = &"Hide"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_uwgtb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ghtbl")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
