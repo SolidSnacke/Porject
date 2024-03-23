@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5y4d6kba6net"]
+
+[ext_resource type="Texture2D" uid="uid://c42npekdv5lg1" path="res://Spriets/background_glacial_mountains.png" id="1_hxoc1"]
+[ext_resource type="Script" path="res://Catch_game/game_catch.gd" id="1_vjudk"]
+[ext_resource type="Texture2D" uid="uid://c3c8pb4grb1n1" path="res://Spriets/Place.png" id="2_vogtd"]
+[ext_resource type="PackedScene" uid="uid://ckr8brffditvc" path="res://Catch_game/Penguin.tscn" id="3_4efwe"]
+[ext_resource type="Texture2D" uid="uid://s2i0kgu204nj" path="res://Spriets/Board.png" id="4_k508d"]
+[ext_resource type="AudioStream" uid="uid://vbtpdx4eu7kq" path="res://Catch_game/9f718586cfaa01b.mp3" id="5_a6k1m"]
+[ext_resource type="Texture2D" uid="uid://eday28nab61e" path="res://Spriets/Button.png" id="5_vd0pn"]
+[ext_resource type="FontFile" uid="uid://b77m1jw8wa2oo" path="res://vcrosdmonorusbyd.ttf" id="6_ptqbk"]
+
+[node name="Game_Catch" type="Node2D"]
+script = ExtResource("1_vjudk")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("1_hxoc1")
+
+[node name="Place" type="Sprite2D" parent="."]
+position = Vector2(575.667, 327.75)
+scale = Vector2(3.00232, 3.00231)
+texture = ExtResource("2_vogtd")
+
+[node name="Board" type="Sprite2D" parent="."]
+position = Vector2(581.333, 327)
+scale = Vector2(3.02778, 3.02778)
+texture = ExtResource("4_k508d")
+
+[node name="Penguin" parent="." instance=ExtResource("3_4efwe")]
+position = Vector2(558, 469)
+
+[node name="Pad" type="Sprite2D" parent="."]
+position = Vector2(898, 586)
+texture = ExtResource("5_vd0pn")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 674.0
+offset_top = 555.0
+offset_right = 1122.0
+offset_bottom = 617.0
+theme_override_fonts/font = ExtResource("6_ptqbk")
+theme_override_font_sizes/font_size = 44
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_a6k1m")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

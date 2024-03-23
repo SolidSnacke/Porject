@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckr8brffditvc"]
+
+[ext_resource type="Texture2D" uid="uid://l4foari41rvl" path="res://Spriets/Penguin-Sheet.png" id="1_276w6"]
+[ext_resource type="Script" path="res://Catch_game/Penguin.gd" id="1_xgidn"]
+[ext_resource type="AudioStream" uid="uid://x3eyyb7m04ia" path="res://Catch_game/knopka-klik-odinochnyii-korotkii-myagkii-priglushennyii.mp3" id="3_0tdub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8cwg"]
+atlas = ExtResource("1_276w6")
+region = Rect2(0, 0, 27, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7tiq"]
+atlas = ExtResource("1_276w6")
+region = Rect2(27, 0, 27, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kxg8"]
+atlas = ExtResource("1_276w6")
+region = Rect2(54, 0, 27, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6mn2"]
+atlas = ExtResource("1_276w6")
+region = Rect2(81, 0, 27, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oag7x"]
+atlas = ExtResource("1_276w6")
+region = Rect2(108, 0, 27, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4d1yk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8cwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7tiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kxg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6mn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oag7x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4xsu"]
+size = Vector2(56, 33)
+
+[node name="Penguin" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_xgidn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.49012e-08, 1.49012e-08)
+scale = Vector2(3.26852, 3.26852)
+sprite_frames = SubResource("SpriteFrames_4d1yk")
+frame_progress = 0.761485
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -59)
+shape = SubResource("RectangleShape2D_r4xsu")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0tdub")
